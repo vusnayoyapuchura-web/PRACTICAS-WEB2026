@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Reloj Espejo JS</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
+<div class="card">
+<h2>Reloj Espejo</h2>
+
+<input type="number" id="hora" placeholder="Hora (1-12)">
+<input type="number" id="min" placeholder="Min (0-59)">
+<button onclick="calcular()">Calcular</button>
+
+<div id="resultado"></div>
+</div>
+
+<script>
+function calcular(){
+    var hora = parseInt(document.getElementById("hora").value);
+    var min = parseInt(document.getElementById("min").value);
+    var hora_real, min_real;
+
+    if(min == 0){
+        hora_real = 12 - hora;
+        min_real = 0;
+    }else{
+        hora_real = 11 - hora;
+        min_real = 60 - min;
+    }
+
+    if(hora_real <= 0){
+        hora_real += 12;
+    }
+
+    document.getElementById("resultado").innerHTML =
+        "Hora Real: " +
+        String(hora_real).padStart(2,'0') + ":" +
+        String(min_real).padStart(2,'0');
+}
+</script>
+
+</body>
+</html>
